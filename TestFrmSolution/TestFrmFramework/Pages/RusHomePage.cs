@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 
 namespace TestFrmFramework.Pages
 {
-    public class SportPage
+    public class RusHomePage
     {
         private IWebDriver driver;
 
-        public SportPage(IWebDriver driver)
+        public RusHomePage(IWebDriver driver)
         {
             this.driver = driver;
             PageFactory.InitElements(this.driver, this);
         }
 
-        [FindsBy(How = How.XPath, Using = ".//*[@class='primary-nav__items']/li[4]/a/span")]
-        private IWebElement FootballLink = null;
+        [FindsBy(How = How.XPath, Using = "(.//*[@class='navigation-wide-list__link'])[1]/span")]
+        private IWebElement MainPageText = null;
 
         public bool IsAt()
         {
-            if (FootballLink.Text.Equals("Football"))
+            if (MainPageText.Text.Equals("Главная"))
             {
                 return true;
             }
