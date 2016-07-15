@@ -8,14 +8,10 @@ using System.Threading.Tasks;
 
 namespace TestFrmFramework.Pages
 {
-    public class HomePage
+    public class HomePage : PageBase
     {
-        private IWebDriver driver;
-
-        public HomePage(IWebDriver driver)
+        public HomePage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
-            PageFactory.InitElements(this.driver, this);
         }
 
         [FindsBy(How = How.XPath, Using = ".//*[@class='module__title']/span")]

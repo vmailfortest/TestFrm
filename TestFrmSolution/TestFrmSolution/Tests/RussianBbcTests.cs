@@ -1,35 +1,30 @@
 ﻿using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TestFrmFramework.Pages;
+using TestFrmFramework.Utils;
 
 namespace TestFrmSolution.Tests
 {
-    [TestClass]
-    public class RussianBbcTests
+    [TestFixture]
+    public class RussianBbcTests : TestBase
     {
-        private static IWebDriver driver;
-
-        [ClassInitialize]
-        public static void ClassInit(TestContext context)
+        [SetUp]
+        public void SetUp()
         {
-            driver = new ChromeDriver(@"c:\temp\");
-            driver.Navigate().GoToUrl("http://www.bbc.com/russian");
+            driver.Navigate().GoToUrl(ConfigurationManager.AppSettings["RussianBbcUrl"]);
         }
 
-        [ClassCleanup]
-        public static void ClassCleanup()
-        {
-            driver.Quit();
-        }
-
-        [TestMethod]
+        [Test]
         public void MainPageIsOpened()
         {
             var rusHomePage = new RusHomePage(driver);

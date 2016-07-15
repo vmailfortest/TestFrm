@@ -8,14 +8,10 @@ using System.Threading.Tasks;
 
 namespace TestFrmFramework.Pages
 {
-    public class RusHomePage
+    public class RusHomePage : PageBase
     {
-        private IWebDriver driver;
-
-        public RusHomePage(IWebDriver driver)
+        public RusHomePage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
-            PageFactory.InitElements(this.driver, this);
         }
 
         [FindsBy(How = How.XPath, Using = "(.//*[@class='navigation-wide-list__link'])[1]/span")]

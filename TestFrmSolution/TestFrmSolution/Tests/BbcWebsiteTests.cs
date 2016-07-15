@@ -1,36 +1,30 @@
 ﻿using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestFrmFramework.Pages;
+using TestFrmFramework.Utils;
 
 namespace TestFrmSolution.Tests
 {
-    [TestClass]
-    public class BbcWebsiteTests
+    [TestFixture]
+    public class BbcWebsiteTests : TestBase
     {
-        private static IWebDriver driver;
-
-        [ClassInitialize]
-        public static void ClassInit(TestContext context)
+        [SetUp]
+        public static void SetUp()
         {
-            driver = new ChromeDriver(@"c:\temp\");
-            driver.Navigate().GoToUrl("http://bbc.com");
+            driver.Navigate().GoToUrl(ConfigurationManager.AppSettings["BbcUrl"]);
         }
 
-        [ClassCleanup]
-        public static void ClassCleanup()
-        {
-            driver.Quit();
-        }
-
-        [TestMethod]
+        [Test]
         public void WelcomeTextIsPresented()
         {
             var homePage = new HomePage(driver);
@@ -42,7 +36,7 @@ namespace TestFrmSolution.Tests
             actualText.Should().Be(expectedText);
         }
 
-        [TestMethod]
+        [Test]
         public void MainMenuPresentedOnSport()
         {
             var homePage = new HomePage(driver);

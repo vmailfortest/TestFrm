@@ -8,14 +8,10 @@ using System.Threading.Tasks;
 
 namespace TestFrmFramework.Pages
 {
-    public class SportPage
+    public class SportPage : PageBase
     {
-        private IWebDriver driver;
-
-        public SportPage(IWebDriver driver)
+        public SportPage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
-            PageFactory.InitElements(this.driver, this);
         }
 
         [FindsBy(How = How.XPath, Using = ".//*[@class='primary-nav__items']/li[4]/a/span")]
