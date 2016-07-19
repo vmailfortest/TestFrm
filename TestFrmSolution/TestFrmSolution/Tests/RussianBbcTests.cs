@@ -29,15 +29,12 @@ namespace TestFrmSolution.Tests
         [Test]
         public void MainPageIsOpened()
         {
-            var rusHomePage = new RusHomePage(driver);
+            UITest(() =>
+            {
+                var rusHomePage = new RusHomePage(driver);
 
-            logger.Debug("Here is a debug log.");
-            logger.Info("... and an Info log.");
-            logger.Warn("... and a warning.");
-            logger.Error("... and an error.");
-            logger.Fatal("... and a fatal error.");
-
-            rusHomePage.IsAt().Should().BeTrue();
+                rusHomePage.IsAt().Should().BeFalse();
+            });
         }
     }
 }

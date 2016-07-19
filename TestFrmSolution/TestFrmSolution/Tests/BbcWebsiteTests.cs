@@ -28,24 +28,32 @@ namespace TestFrmSolution.Tests
         [Test]
         public void WelcomeTextIsPresented()
         {
-            var homePage = new HomePage(driver);
+            UITest(() =>
+            {
+                var homePage = new HomePage(driver);
 
-            string expectedText = "Welcome toQQQ BBC.com";
+                string expectedText = "Welcome to BBC.com";
 
-            string actualText = homePage.GetWelcomeText();
+                string actualText = homePage.GetWelcomeText();
 
-            actualText.Should().Be(expectedText);
+                //actualText.Should().Be(expectedText);
+                actualText.Should().Be("hello");
+            });
         }
 
         [Test]
         public void MainMenuPresentedOnSport()
         {
-            var homePage = new HomePage(driver);
+            UITest(() =>
+            {
+                var homePage = new HomePage(driver);
 
-            homePage.ClickSportLink();
+                homePage.ClickSportLink();
 
-            var sportPage = new SportPage(driver);
-            sportPage.IsAt().Should().BeTrue();
+                var sportPage = new SportPage(driver);
+
+                sportPage.IsAt().Should().BeFalse();
+            });
         }
     }
 }

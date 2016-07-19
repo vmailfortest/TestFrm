@@ -14,7 +14,7 @@ namespace TestFrmFramework.Pages
         {
         }
 
-        [FindsBy(How = How.XPath, Using = ".//*[@class='primary-nav__items']/li[4]/a/spanQQQ")]
+        [FindsBy(How = How.XPath, Using = ".//*[@class='primary-nav__items']/li[4]/a/span")]
         private IWebElement FootballLink = null;
 
         public bool IsAt()

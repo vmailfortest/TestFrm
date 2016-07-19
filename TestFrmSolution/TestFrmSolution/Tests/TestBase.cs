@@ -17,46 +17,61 @@ namespace TestFrmSolution.Tests
     public class TestBase
     {
         public static IWebDriver driver;
-        public static ILog logger = LogManager.GetLogger(typeof(RussianBbcTests));
 
         [OneTimeSetUp]
         public static void OneTimeSetUp()
         {
-            DOMConfigurator.Configure();
+            XmlConfigurator.Configure();
 
-            logger.Info("Starting driver.");
+            TestHelper.Logger.Debug("Starting driver.");
             driver = WebBrowser.GetDriver();
 
-            logger.Info("Starting TestClass: " + TestContext.CurrentContext.Test.ClassName);
+            TestHelper.Logger.Debug("Starting TestClass: " + TestContext.CurrentContext.Test.ClassName);
         }
 
         [SetUp]
         public void SetUp()
         {
-            logger.Info("Starting test: " + TestContext.CurrentContext.Test.Name);
+            TestHelper.Logger.Debug("Starting test: " + TestContext.CurrentContext.Test.Name);
         }
 
         [OneTimeTearDown]
         public static void OneTimeTearDown()
         {
-            logger.Info("Quit driver.");
+            TestHelper.Logger.Debug("Quit driver.");
             driver.Quit();
         }
 
         [TearDown]
         public static void TearDown()
         {
-            logger.Info("Finished test: " + TestContext.CurrentContext.Test.Name);
+            TestHelper.Logger.Debug("Finished test: " + TestContext.CurrentContext.Test.Name);
 
-            bool testResult = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed;
+            //bool testResult = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed;
+            //if (testResult == true)
+            //{
+            //    TestHelper.CreateScreenshot(driver, TestContext.CurrentContext.Test.Name);
+            //    TestHelper.Logger.Info($"Screenshot is captured");
+            //}
+        }
 
-            if (testResult == true)
+        protected void UITest(Action action)
+        {
+            try
             {
+                action();
+            }
+            catch (Exception ex)
+            {
+                TestHelper.Logger.Error(TestContext.CurrentContext.Test.ClassName + " > "
+                    + TestContext.CurrentContext.Test.Name + "\r\n"
+                    + ex.Message);
+
                 TestHelper.CreateScreenshot(driver, TestContext.CurrentContext.Test.Name);
 
-                logger.Info($"Screenshot is captured");
+                throw;
             }
-
         }
+
     }
 }

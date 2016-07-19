@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using log4net;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,6 +11,8 @@ namespace TestFrmFramework.Utils
 {
     public class TestHelper
     {
+        public static ILog Logger {get; } = LogManager.GetLogger("TestLogger");
+
         public static void CreateScreenshot(IWebDriver driver, string testName)
 
         {

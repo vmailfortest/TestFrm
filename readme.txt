@@ -15,3 +15,8 @@ TestFrm v2.0
 TestFrm v2.1
 - Added screenshots on test fail
 - Added logger on common actions like test start
+
+TestFrm v2.1.1
+- Added base try-catch for tests, changes below are implemented inside catch
+- Added logger on test fail
+- Screenshots called from catch, not from teardown as before
