@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using log4net;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -16,6 +17,7 @@ using TestFrmFramework.Utils;
 namespace TestFrmSolution.Tests
 {
     [TestFixture]
+    //[Parallelizable]
     public class RussianBbcTests : TestBase
     {
         [SetUp]
@@ -28,6 +30,12 @@ namespace TestFrmSolution.Tests
         public void MainPageIsOpened()
         {
             var rusHomePage = new RusHomePage(driver);
+
+            logger.Debug("Here is a debug log.");
+            logger.Info("... and an Info log.");
+            logger.Warn("... and a warning.");
+            logger.Error("... and an error.");
+            logger.Fatal("... and a fatal error.");
 
             rusHomePage.IsAt().Should().BeTrue();
         }

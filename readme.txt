@@ -11,3 +11,7 @@ TestFrm v2.0
 - Moved urls and settings to config
 - Moved browser creation to class
 - Changed mstest to nunit
+
+TestFrm v2.1
+- Added screenshots on test fail
+- Added logger on common actions like test start

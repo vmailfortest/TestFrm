@@ -10,7 +10,7 @@ namespace TestFrmFramework.Pages
 {
     public class PageBase
     {
-        private IWebDriver driver;
+        public IWebDriver driver;
 
         public PageBase(IWebDriver driver)
         {

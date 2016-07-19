@@ -16,6 +16,7 @@ using TestFrmFramework.Utils;
 namespace TestFrmSolution.Tests
 {
     [TestFixture]
+    //[Parallelizable]
     public class BbcWebsiteTests : TestBase
     {
         [SetUp]
@@ -29,7 +30,7 @@ namespace TestFrmSolution.Tests
         {
             var homePage = new HomePage(driver);
 
-            string expectedText = "Welcome to BBC.com";
+            string expectedText = "Welcome toQQQ BBC.com";
 
             string actualText = homePage.GetWelcomeText();
 

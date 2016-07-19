@@ -16,18 +16,25 @@ namespace TestFrmFramework.Utils
         public static IWebDriver GetDriver()
         {
             DesiredCapabilities caps;
+            IWebDriver driver;
 
             switch (Browser)
             {
                 case "Chrome":
                     caps = DesiredCapabilities.Chrome();
-                    return new RemoteWebDriver(new Uri(ConfigurationManager.AppSettings["SeleniumServerUrl"]), caps);
+                    driver = new RemoteWebDriver(new Uri(ConfigurationManager.AppSettings["SeleniumServerUrl"]), caps);
+                    driver.Manage().Window.Maximize();
+                    return driver;
                 case "Firefox":
                     caps = DesiredCapabilities.Firefox();
-                    return new RemoteWebDriver(new Uri(ConfigurationManager.AppSettings["SeleniumServerUrl"]), caps);
+                    driver = new RemoteWebDriver(new Uri(ConfigurationManager.AppSettings["SeleniumServerUrl"]), caps);
+                    driver.Manage().Window.Maximize();
+                    return driver;
                 case "IE":
                     caps = DesiredCapabilities.InternetExplorer();
-                    return new RemoteWebDriver(new Uri(ConfigurationManager.AppSettings["SeleniumServerUrl"]), caps);
+                    driver = new RemoteWebDriver(new Uri(ConfigurationManager.AppSettings["SeleniumServerUrl"]), caps);
+                    driver.Manage().Window.Maximize();
+                    return driver;
             }
 
             throw new Exception("Invalid browser name in appSettings. Should be one of: Chrome, Firefox, IE.");
