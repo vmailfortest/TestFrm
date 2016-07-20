@@ -1,7 +1,6 @@
 ﻿using log4net;
 using log4net.Config;
 using NUnit.Framework;
-using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using System;
@@ -18,7 +17,7 @@ namespace TestFrmSolution.Tests
     {
         public static IWebDriver driver;
 
-        [OneTimeSetUp]
+        [TestFixtureSetUp]
         public static void OneTimeSetUp()
         {
             XmlConfigurator.Configure();
@@ -26,7 +25,7 @@ namespace TestFrmSolution.Tests
             TestHelper.Logger.Debug("Starting driver.");
             driver = WebBrowser.GetDriver();
 
-            TestHelper.Logger.Debug("Starting TestClass: " + TestContext.CurrentContext.Test.ClassName);
+            TestHelper.Logger.Debug("Starting TestClass: " + TestContext.CurrentContext.TestDirectory);
         }
 
         [SetUp]
@@ -35,7 +34,7 @@ namespace TestFrmSolution.Tests
             TestHelper.Logger.Debug("Starting test: " + TestContext.CurrentContext.Test.Name);
         }
 
-        [OneTimeTearDown]
+        [TestFixtureTearDown]
         public static void OneTimeTearDown()
         {
             TestHelper.Logger.Debug("Quit driver.");
@@ -63,11 +62,10 @@ namespace TestFrmSolution.Tests
             }
             catch (Exception ex)
             {
-                TestHelper.Logger.Error(TestContext.CurrentContext.Test.ClassName + " > "
-                    + TestContext.CurrentContext.Test.Name + "\r\n"
+                TestHelper.Logger.Error(TestContext.CurrentContext.Test.FullName + "\r\n"
                     + ex.Message);
 
-                TestHelper.CreateScreenshot(driver, TestContext.CurrentContext.Test.Name);
+                //TestHelper.CreateScreenshot(driver, TestContext.CurrentContext.Test.Name);
 
                 throw;
             }

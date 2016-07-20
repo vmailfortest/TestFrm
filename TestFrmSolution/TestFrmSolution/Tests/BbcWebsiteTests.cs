@@ -37,7 +37,7 @@ namespace TestFrmSolution.Tests
                 string actualText = homePage.GetWelcomeText();
 
                 //actualText.Should().Be(expectedText);
-                actualText.Should().Be("hello");
+                actualText.Should().Be(expectedText, "Welcome text on home page is absent or incorrect");
             });
         }
 
@@ -52,7 +52,7 @@ namespace TestFrmSolution.Tests
 
                 var sportPage = new SportPage(driver);
 
-                sportPage.IsAt().Should().BeFalse();
+                sportPage.IsAt().Should().BeFalse("Main menu on sport page is absent or incorrect");
             });
         }
     }

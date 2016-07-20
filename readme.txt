@@ -20,3 +20,7 @@ TestFrm v2.1.1
 - Added base try-catch for tests, changes below are implemented inside catch
 - Added logger on test fail
 - Screenshots called from catch, not from teardown as before
+
+TestFrm v3.0
+- Changed nunit3 to nunit2 (due to allure/jenkins support)
+- Disabled screenshots, because moved to Allure reports, and the have it included

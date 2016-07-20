@@ -33,7 +33,7 @@ namespace TestFrmSolution.Tests
             {
                 var rusHomePage = new RusHomePage(driver);
 
-                rusHomePage.IsAt().Should().BeFalse();
+                rusHomePage.IsAt().Should().BeTrue("Russian version page is not opened");
             });
         }
     }
