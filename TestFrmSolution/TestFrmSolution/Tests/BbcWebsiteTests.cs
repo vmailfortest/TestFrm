@@ -52,7 +52,7 @@ namespace TestFrmSolution.Tests
 
                 var sportPage = new SportPage(driver);
 
-                sportPage.IsAt().Should().BeFalse("Main menu on sport page is absent or incorrect");
+                sportPage.IsAt().Should().BeTrue("Main menu on sport page is absent or incorrect");
             });
         }
     }
